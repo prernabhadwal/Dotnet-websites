@@ -1,0 +1,95 @@
+-----sp_helptext uspfindpassword
+
+  
+  
+create procedure uspfindpassword  
+(@customerid varchar(10))  
+as  
+select password1 from customerdetails where customerid=@customerid;
+
+
+---sp_helptext uspprepopulatecustb
+
+create procedure uspprepopulatecustb  
+@usdat cuss readonly  
+as insert into customerdetails(CustomerId,password1,CustomerName,Age,CustomerType,Email,Phone,City,State1,Country,Pincode  
+,DateOfBirth)  
+select * from customerdetails;  
+
+--sp_helptext uspprepopulationcustdetails
+
+
+CREATE proc [dbo].[uspprepopulationcustdetails]  
+@userdata custdetailtest readonly  
+as  
+begin  
+insert into customerdetails(Customerid,password1,customername,age,customertype,  
+email,phone,city,state1,country,pincode,dateofbirth)  
+select * from @userdata  
+end
+
+---------sp_helptext uspprepopulationdeleterow
+
+create procedure uspprepopulationdeleterow  
+(@bookingid varchar(10))  
+as  
+delete from hoteldetails where bookingid=@bookingid;
+
+
+
+------------sp_helptext uspprepopulationofcharges1
+
+  
+  create procedure uspprepopulationofcharges1  
+  (@RoomType varchar(10))  
+  as  
+  select cost from roomdetails where typeofroom=@RoomType
+
+
+------sp_helptext uspprepopulationofgriddetails
+
+create procedure uspprepopulationofgriddetails  
+(@bookingid varchar(10))  
+as   
+select * from hoteldetails where bookingid=@bookingid;
+
+
+
+----sp_helptext uspprepopulationofid
+
+  
+create procedure uspprepopulationofid  
+as  
+select * from customerdetails
+
+
+------------sp_helptext uspprepopulationofmodifydetails
+
+CREATE procedure [dbo].[uspprepopulationofmodifydetails]  
+  
+as   
+select * from hoteldetails ;
+
+
+---------------sp_helptext uspprepopulationofupdatenewlynew
+
+  
+  
+create procedure uspprepopulationofupdatenewlynew  
+(@customerid varchar(5),@bookingid varchar(10),@bookingdate date,@hotelid varchar(8),  
+ @fromdate date,@todate date,@noofadults int,@noofnights int,@noofchild int,@billamount money,  
+ @totalacrooms int,@totalnonacrooms int)  
+as  
+update hoteldetails set bookingdate=@bookingdate,hotelid=@hotelid,  
+fromdate=@fromdate,todate=@todate,noofadults=@noofadults,noofnights=@noofnights,  
+noofchild=@noofchild,billamount=@billamount,totalacrooms=@totalacrooms,totalnonacrooms=@totalnonacrooms  
+ where customerid=@customerid and bookingid=@bookingid;
+
+
+-------sp_helptext uspupdatepassword
+
+   
+create procedure uspupdatepassword  
+(@newpassword varchar(13),@oldpassword varchar(13),@customerid varchar(10))  
+as  
+update customerdetails set password1=@newpassword where customerid=@customerid;
